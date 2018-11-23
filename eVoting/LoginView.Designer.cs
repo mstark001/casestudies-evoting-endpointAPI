@@ -1,6 +1,6 @@
 ﻿namespace eVoting
 {
-    partial class Form1
+    partial class LoginView
     {
         /// <summary>
         /// Required designer variable.

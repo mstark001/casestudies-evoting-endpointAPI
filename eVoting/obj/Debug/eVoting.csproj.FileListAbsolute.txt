@@ -12,9 +12,9 @@ C:/Users/Matth/source/repos/eVoting/eVoting/obj/Debug/eVoting.pdb
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/bin/Debug/eVoting.exe
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/bin/Debug/eVoting.pdb
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.csprojAssemblyReference.cache
-/Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.Form1.resources
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.Properties.Resources.resources
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.csproj.GenerateResource.cache
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.csproj.CoreCompileInputs.cache
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.exe
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.pdb
+/Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.LoginView.resources
