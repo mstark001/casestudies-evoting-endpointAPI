@@ -30,8 +30,20 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="RequestHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\EndpointRequest.cs" />
+    <Compile Include="Models\GeoCoordinate.cs" />
+    <Compile Include="Models\EndpointResponse.cs" />
+    <Compile Include="Models\EndpointRequestQueue.cs" />
+    <Compile Include="Models\RequestType.cs" />
+    <Compile Include="Services\EndpointDatabaseService.cs" />
+    <Compile Include="Services\OAuthDatabaseService.cs" />
+    <Compile Include="Services\ConsistuencyDatabaseService.cs" />
+    <Compile Include="Services\DatabaseService.cs" />
+    <Compile Include="Models\DatabaseConnection.cs" />
+    <Compile Include="Interfaces\IDatabaseService.cs" />
+    <Compile Include="Models\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />

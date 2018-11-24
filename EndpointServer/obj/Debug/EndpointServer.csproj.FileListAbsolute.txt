@@ -1,0 +1,5 @@
+/Users/mattstark/Documents/GitHub/casestudies-evoting/EndpointServer/obj/Debug/EndpointServer.csproj.CoreCompileInputs.cache
+/Users/mattstark/Documents/GitHub/casestudies-evoting/EndpointServer/bin/Debug/EndpointServer.exe
+/Users/mattstark/Documents/GitHub/casestudies-evoting/EndpointServer/bin/Debug/EndpointServer.pdb
+/Users/mattstark/Documents/GitHub/casestudies-evoting/EndpointServer/obj/Debug/EndpointServer.exe
+/Users/mattstark/Documents/GitHub/casestudies-evoting/EndpointServer/obj/Debug/EndpointServer.pdb

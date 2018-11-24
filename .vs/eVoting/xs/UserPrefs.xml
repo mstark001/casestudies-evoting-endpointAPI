@@ -1,13 +1,14 @@
-﻿<Properties StartupConfiguration="{5594ACE7-7661-4CCF-8673-715D6800053A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="eVoting/Services/EndpointServerService.cs">
+﻿<Properties StartupConfiguration="{0190DF0D-EAD2-4073-831C-0614ED9962B4}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EndpointServer/RequestHandler.cs">
     <Files>
-      <File FileName="VotingServer/Program.cs" Line="1" Column="1" />
-      <File FileName="EndpointServer/Program.cs" Line="1" Column="1" />
-      <File FileName="eVoting/Services/EndpointServerService.cs" Line="55" Column="1" />
+      <File FileName="EndpointServer/RequestHandler.cs" Line="42" Column="10" />
+      <File FileName="EndpointServer/Services/EndpointDatabaseService.cs" Line="10" Column="43" />
+      <File FileName="EndpointServer/Services/OAuthDatabaseService.cs" Line="7" Column="9" />
+      <File FileName="EndpointServer/Services/ConsistuencyDatabaseService.cs" Line="10" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.EndpointServer FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.EndpointServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/Interfaces/IVotingServerService.cs" relfile="eVoting/Interfaces/IVotingServerService.cs" line="12" column="1" />
