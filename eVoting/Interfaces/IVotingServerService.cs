@@ -9,8 +9,7 @@ namespace eVoting.Interfaces
 {
     public interface IVotingServerService
     {
-        void SetLocalServerEndpoint(string endpoint);
-        void SetLoggedIn(bool loggedIn);
+        void Authenticate(string postcode, string votingCode, string endpoint);
         List<Election> GetCurrentElections();
             
     }

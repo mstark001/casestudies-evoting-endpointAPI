@@ -1,4 +1,5 @@
-﻿using eVoting.Interfaces;
+﻿using eVoting.Exceptions;
+using eVoting.Interfaces;
 using eVoting.Models;
 using System;
 using System.Collections.Generic;
@@ -8,17 +9,11 @@ using System.Threading.Tasks;
 
 namespace eVoting.Services
 {
-    public class NotAuthenticatedException : Exception
-    {
-        public NotAuthenticatedException() : base() 
-        {
-        } 
-    }
-
     public class VotingServerService : IVotingServerService
     {
         private string _localServerEndpoint;
         private bool _loggedIn = false;
+        private string _oAuthToken;
 
         private IEndpointServerService _coordServerService;
 
@@ -27,14 +22,13 @@ namespace eVoting.Services
             _coordServerService = coordServerService;
         }
 
-        public void SetLocalServerEndpoint(string endpoint)
+        public void Authenticate(string postcode, string votingCode, string endpoint)
         {
-            _localServerEndpoint = endpoint;
-        }
+            if (!SetupOuathToken(postcode, votingCode))         
+                throw new NotAuthenticatedException();
 
-        public void SetLoggedIn(bool loggedIn)
-        {
-            _loggedIn = loggedIn;
+            SetLocalServerEndpoint(endpoint);
+            SetLoggedIn(true);
         }
 
 
@@ -50,6 +44,23 @@ namespace eVoting.Services
 
         #region Private Helper Functions
 
+        private void SetLocalServerEndpoint(string endpoint)
+        {
+            _localServerEndpoint = endpoint;
+        }
+
+        private void SetLoggedIn(bool loggedIn)
+        {
+            _loggedIn = loggedIn;
+        }
+
+        private bool SetupOuathToken(string postcode, string votingCode)
+        {
+            //use postcode and votingCode to get an oauth token
+            _oAuthToken = "some token";
+            return true;
+        }
+
         private bool VerifyRequest()
         {
             if (!_loggedIn)
@@ -59,6 +70,12 @@ namespace eVoting.Services
                 return false;
 
             if (_localServerEndpoint == "")
+                return false;
+
+            if (_oAuthToken == null)
+                return false;
+
+            if (_oAuthToken == "")
                 return false;
 
             return true;

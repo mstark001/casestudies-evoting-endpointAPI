@@ -17,10 +17,7 @@ namespace eVoting.Services
         public bool Login(string postcode, string votingCode)
         {
             var endpoint = _endpointServerService.GetLocalEndpoint(postcode, votingCode);
-
-            _votingServerService.SetLoggedIn(loggedIn: true);
-            _votingServerService.SetLocalServerEndpoint(endpoint);
-
+            _votingServerService.Authenticate(postcode, votingCode, endpoint);
             return true;
         }
 

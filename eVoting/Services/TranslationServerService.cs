@@ -6,8 +6,7 @@ namespace eVoting.Services
 {
     public class TranslationServerService : ITranslationServerService
     {
-        private static string BASESERVERADDRESS = "www.someaddress.com";
-
+        private const string BASESERVERADDRESS = "www.someaddress.com";
         public TranslationServerService()
         {
         }
