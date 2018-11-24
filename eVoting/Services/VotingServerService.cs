@@ -8,45 +8,61 @@ using System.Threading.Tasks;
 
 namespace eVoting.Services
 {
+    public class NotAuthenticatedException : Exception
+    {
+        public NotAuthenticatedException() : base() 
+        {
+        } 
+    }
+
     public class VotingServerService : IVotingServerService
     {
         private string _localServerEndpoint;
-        private ICoordinateServerService _coordServerService;
+        private bool _loggedIn = false;
 
-        public VotingServerService(GeoCoordinate coord, ICoordinateServerService coordServerService)
+        private IEndpointServerService _coordServerService;
+
+        public VotingServerService(IEndpointServerService coordServerService)
         {
             _coordServerService = coordServerService;
-
-            var endpoint = _coordServerService.GetLocalRegionEndpointFrom(coord);
-            SetLocalEndpoint(endpoint);
         }
 
-        public string GetLocalServerEndpoint()
+        public void SetLocalServerEndpoint(string endpoint)
         {
-            return _localServerEndpoint;
+            _localServerEndpoint = endpoint;
+        }
+
+        public void SetLoggedIn(bool loggedIn)
+        {
+            _loggedIn = loggedIn;
         }
 
 
-        public List<string> GetCurrentElections()
+        public List<Election> GetCurrentElections()
         {
+            if (!VerifyRequest())
+                throw new NotAuthenticatedException();
+
             //using the endpoint, get current elections from server for this region
-            return new List<string>();
+            return new List<Election>();
         }
 
 
         #region Private Helper Functions
 
-        private string GetLocalEndpointFromCoord(GeoCoordinate coord)
+        private bool VerifyRequest()
         {
-            //Connect to some server somewhere, using cord
-            return "Some endpoint";
-        }
+            if (!_loggedIn)
+                return false;
 
-        private void SetLocalEndpoint(string endpoint)
-        {
-            _localServerEndpoint = endpoint;
-        }
+            if (_localServerEndpoint == null)
+                return false;
 
+            if (_localServerEndpoint == "")
+                return false;
+
+            return true;
+        }
 
         #endregion
     }

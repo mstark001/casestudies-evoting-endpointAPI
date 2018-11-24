@@ -41,9 +41,5 @@ namespace eVoting.Models
             _long = longi;
         }
 
-        #region Private Helper Classes
-
-        #endregion
-
     }
 }

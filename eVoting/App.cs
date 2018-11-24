@@ -11,7 +11,9 @@ namespace eVoting
 {
     public enum ViewType
     {
-        LoginView
+        LoginView,
+        RegisterView,
+        VotingView
     }
 
     static class App
@@ -19,11 +21,7 @@ namespace eVoting
         private static Dictionary<ViewType, BaseView> _viewRegister = new Dictionary<ViewType, BaseView>();
 
         private static IDependencyService _dependencyService;
-        private static ICoordinateServerService _coordinateServerService;
-        private static IVotingServerService _votingServerService;
-
         private static BaseView _currentView;
-
 
 
         /// <summary>
@@ -38,8 +36,8 @@ namespace eVoting
             _dependencyService = new DependencyService();
 
             RegisterViews();
-            SetupServices();
-            RegisterServices();
+            SetupAndRegisterServices();
+
 
             NavigateToView(ViewType.LoginView);
         }
@@ -73,25 +71,30 @@ namespace eVoting
             _viewRegister.Add(ViewType.LoginView, new LoginView(_dependencyService));
         }
 
-        private static void SetupServices()
+        private static void SetupAndRegisterServices()
         {
             ///////////// Service Setup ///////////////////////////////////////
 
-            //_coordinateServerService = new CoordinateServerService("someUserId", "someUserSecret");
-            //_votingServerService = new VotingServerService(geo, _coordinateServerService);
+            var geoLocationService = new GeoLocationService();
+            var endpointServerService = new EndpointServerService(geoLocationService);
+            var votingServerService = new VotingServerService(endpointServerService);
+            var loginService = new LoginService(endpointServerService, votingServerService);
+            var translationServerService = new TranslationServerService();
+            var accessibleValueService = new AccessibleValueService(translationServerService);
 
-            ////////////////////////////////////////////////////////////ß//
-        }
+            ///////////// Set up the Dependency Service //////////////////
 
-        private static void RegisterServices()
-        {
-            ///////////// Set up the Dependnecy Service //////////////////
-
-            _dependencyService.Register<ICoordinateServerService>(_coordinateServerService);
-            _dependencyService.Register<IVotingServerService>(_votingServerService);
+            _dependencyService.Register<IGeoLocationService>(geoLocationService);
+            _dependencyService.Register<ILoginService>(loginService);
+            _dependencyService.Register<IEndpointServerService>(endpointServerService);
+            _dependencyService.Register<IVotingServerService>(votingServerService);
+            _dependencyService.Register<ITranslationServerService>(translationServerService);
+            _dependencyService.Register<IAccessibleValueService>(accessibleValueService);
 
             //////////////////////////////////////////////////////////////
         }
+
+
 
         #endregion
 

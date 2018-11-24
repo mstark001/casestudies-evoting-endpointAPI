@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace eVoting.Interfaces
 {
-    public interface ICoordinateServerService
+    public interface IEndpointServerService
     {
-        string GetLocalRegionEndpointFrom(GeoCoordinate coord);
-
-
+        string GetLocalEndpoint(string postcode, string votingCode);
     }
 }
