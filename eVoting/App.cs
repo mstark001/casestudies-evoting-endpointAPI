@@ -69,6 +69,7 @@ namespace eVoting
         private static void RegisterViews()
         {
             _viewRegister.Add(ViewType.LoginView, new LoginView(_dependencyService));
+            _viewRegister.Add(ViewType.RegisterView, new RegisterView(_dependencyService));
         }
 
         private static void SetupAndRegisterServices()

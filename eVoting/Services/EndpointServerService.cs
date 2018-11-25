@@ -21,7 +21,7 @@ namespace eVoting.Services
 
         public string GetLocalEndpoint(string postcode, string votingCode)
         {
-            var oauth = GetOuathToken(postcode, votingCode);
+            var oauth = GetOAuthToken(postcode, votingCode);
             var location = _geoLocationService.GetCurrentLocation();
 
 
@@ -36,8 +36,20 @@ namespace eVoting.Services
             return null;
         }
 
+        public bool RegisterNewUser(RegisterUser user)
+        {
+            var oauth = GetOAuthToken(user.GetFirstName(), user.GetSurname(), user.GetGovernmentId());
+            return RegisterNewUserOnServer(oauth, user);
+        }
+
 
         #region Private Helper Functions 
+
+        private bool RegisterNewUserOnServer(string oauth, RegisterUser user)
+        {
+            //Go online and register the usser
+            return true;
+        }
 
         private string GetLocalEndpointFromServer(string oauth, GeoCoordinate location, string postcode, string votingCode)
         {
@@ -52,7 +64,13 @@ namespace eVoting.Services
             return true;
         }
 
-        private string GetOuathToken(string postcode, string votingCode)
+        private string GetOAuthToken(string firstName, string lastName, string postCode )
+        {
+            //get an oauth token
+            return "some token";
+        }
+
+        private string GetOAuthToken(string postcode, string votingCode)
         {
             //use postcode and votingCode to get an oauth token
             return "some token";

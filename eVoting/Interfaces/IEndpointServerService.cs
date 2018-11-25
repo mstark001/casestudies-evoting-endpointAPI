@@ -10,5 +10,6 @@ namespace eVoting.Interfaces
     public interface IEndpointServerService
     {
         string GetLocalEndpoint(string postcode, string votingCode);
+        bool RegisterNewUser(RegisterUser user);
     }
 }

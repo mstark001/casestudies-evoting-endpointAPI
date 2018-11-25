@@ -48,11 +48,11 @@
     <Compile Include="DependencyService.cs" />
     <Compile Include="Interfaces\IEndpointServerService.cs" />
     <Compile Include="Interfaces\IDependencyService.cs" />
-    <Compile Include="LoginView.cs">
+    <Compile Include="RegisterView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginView.Designer.cs">
-      <DependentUpon>LoginView.cs</DependentUpon>
+    <Compile Include="RegisterView.Designer.cs">
+      <DependentUpon>RegisterView.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IVotingServerService.cs" />
     <Compile Include="Models\Country.cs" />
@@ -64,8 +64,8 @@
     <Compile Include="Models\GeoCoordinate.cs" />
     <Compile Include="Services\VotingServerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="LoginView.resx">
-      <DependentUpon>LoginView.cs</DependentUpon>
+    <EmbeddedResource Include="RegisterView.resx">
+      <DependentUpon>RegisterView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -96,6 +96,17 @@
     <Compile Include="Services\AccessibleValueService.cs" />
     <Compile Include="Interfaces\IAccessibleValueService.cs" />
     <Compile Include="Exceptions\NotAuthenticatedException.cs" />
+    <Compile Include="LoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\RegisterUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

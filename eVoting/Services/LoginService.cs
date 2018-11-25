@@ -1,5 +1,6 @@
 ﻿using System;
 using eVoting.Interfaces;
+using eVoting.Models;
 
 namespace eVoting.Services
 {
@@ -19,6 +20,11 @@ namespace eVoting.Services
             var endpoint = _endpointServerService.GetLocalEndpoint(postcode, votingCode);
             _votingServerService.Authenticate(postcode, votingCode, endpoint);
             return true;
+        }
+
+        public bool RegisterNewUser(RegisterUser user)
+        {
+            return _endpointServerService.RegisterNewUser(user);
         }
 
         

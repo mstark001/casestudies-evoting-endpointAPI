@@ -18,3 +18,4 @@ C:/Users/Matth/source/repos/eVoting/eVoting/obj/Debug/eVoting.pdb
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.exe
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.pdb
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.LoginView.resources
+/Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.RegisterView.resources
