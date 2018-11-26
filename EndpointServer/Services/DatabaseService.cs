@@ -50,6 +50,9 @@ namespace EndpointServer.Services
             //do a thing
         }
 
-
+        public void RegisterOAuthCodeAgainstSignUp(string oauth, string firstName, string lastname, string postCode)
+        {
+            //do a thing
+        }
     }
 }

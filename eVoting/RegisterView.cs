@@ -28,7 +28,11 @@ namespace eVoting
         private string _lastName;
         private string _governmentId;
         private Address _address;
-     
+
+        private bool _annoymousModeOn;
+
+        private byte[] _annonymousForm;
+        private string _annoymousDetails;
   
         #region View Setup and Teardown functions
 
@@ -109,9 +113,25 @@ namespace eVoting
             _address = address;
         }
 
+        public void SetAnnoymousForm(byte[] file)
+        {
+            _annonymousForm = file;
+            Redraw();
+        }
+
+        public void SetAdditionalAnnoymousDetails(string additionalDetails)
+        {
+            _annoymousDetails = additionalDetails;
+        }
+
+        public void SetAnnoymousModeOn(bool mode)
+        {
+            _annoymousModeOn = mode;
+        }
+
         public void Register()
         {
-            if (!ValidForm())
+            if (!ValidStandardForm())
                 throw new ArgumentException();  //Display on page somewhere
 
 
@@ -132,13 +152,35 @@ namespace eVoting
             App.NavigateToView(ViewType.LoginView);
         }
 
+        public void RegisterAnonymously()
+        {
+            if (!ValidAnnoymousForm())
+                throw new ArgumentException();  //Display on page somewhere
+
+            var user = new AnnoymousRegisterUser();
+            user.SetForm(_annonymousForm);
+            user.SetAdditionalDetails(_annoymousDetails);
+
+            if (!_loginService.RegisterAnnoymousUser(user))
+                throw new ArgumentException(); //Display on page somewhere
+
+            //Register success - navigate back to home
+            App.NavigateToView(ViewType.LoginView);
+        }
+
 
 
         #region Private Helper Functions
 
-        private bool ValidForm()
+        private bool ValidStandardForm()
         {
             //Front end validation of the form entries
+            return true;
+        }
+
+        private bool ValidAnnoymousForm()
+        {
+            //Front end validation of the form
             return true;
         }
 

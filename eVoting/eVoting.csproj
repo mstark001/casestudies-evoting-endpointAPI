@@ -107,6 +107,7 @@
     </EmbeddedResource>
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\RegisterUser.cs" />
+    <Compile Include="Models\AnnoymousRegisterUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

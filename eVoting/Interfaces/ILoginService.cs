@@ -7,5 +7,6 @@ namespace eVoting.Interfaces
     {
         bool Login(string postcode, string votingCode);
         bool RegisterNewUser(RegisterUser user);
+        bool RegisterAnnoymousUser(AnnoymousRegisterUser user);
     }
 }

@@ -27,6 +27,11 @@ namespace eVoting.Services
             return _endpointServerService.RegisterNewUser(user);
         }
 
+        public bool RegisterAnnoymousUser(AnnoymousRegisterUser user)
+        {
+            return _endpointServerService.RegisterAnnoymousUser(user);
+        }
+
         
     }
 }

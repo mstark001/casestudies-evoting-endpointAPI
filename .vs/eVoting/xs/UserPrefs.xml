@@ -1,9 +1,14 @@
 ﻿<Properties StartupConfiguration="{5594ACE7-7661-4CCF-8673-715D6800053A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="eVoting/Services/EndpointServerService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EndpointServer/Models/RequestObjects/RegisterNewUserRequest.cs">
     <Files>
-      <File FileName="eVoting/RegisterView.cs" Line="137" Column="13" />
-      <File FileName="eVoting/LoginView.cs" Line="86" Column="55" />
-      <File FileName="eVoting/Services/EndpointServerService.cs" Line="45" Column="1" />
+      <File FileName="eVoting/Services/EndpointServerService.cs" Line="37" Column="10" />
+      <File FileName="EndpointServer/RequestHandler.cs" Line="108" Column="13" />
+      <File FileName="EndpointServer/Models/RequestType.cs" Line="12" Column="9" />
+      <File FileName="EndpointServer/Models/EndpointRequest.cs" Line="17" Column="9" />
+      <File FileName="EndpointServer/Models/RequestObjects/RegisterAnnoymousUserRequest.cs" Line="9" Column="2" />
+      <File FileName="EndpointServer/Models/RequestObjects/GetEndpointRequest.cs" Line="7" Column="36" />
+      <File FileName="EndpointServer/Models/RequestObjects/RegisterNewUserRequest.cs" Line="13" Column="34" />
+      <File FileName="eVoting/Models/RegisterUser.cs" Line="6" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

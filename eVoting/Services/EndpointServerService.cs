@@ -42,8 +42,23 @@ namespace eVoting.Services
             return RegisterNewUserOnServer(oauth, user);
         }
 
+        public bool RegisterAnnoymousUser(AnnoymousRegisterUser user)
+        {
+            string randomData1 = new Guid().ToString();
+            string randomData2 = new Guid().ToString();
+            string randomData3 = new Guid().ToString();
+
+            var oauth = GetOAuthToken(randomData1, randomData2, randomData3);
+            return RegisterNewAnnoymousUserOnServer(oauth, user);
+        }
 
         #region Private Helper Functions 
+
+        private bool RegisterNewAnnoymousUserOnServer(string oauth, AnnoymousRegisterUser user)
+        {
+            //Go online and register the usser
+            return true;
+        }
 
         private bool RegisterNewUserOnServer(string oauth, RegisterUser user)
         {

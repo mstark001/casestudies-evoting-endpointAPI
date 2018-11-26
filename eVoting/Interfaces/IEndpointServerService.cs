@@ -11,5 +11,6 @@ namespace eVoting.Interfaces
     {
         string GetLocalEndpoint(string postcode, string votingCode);
         bool RegisterNewUser(RegisterUser user);
+        bool RegisterAnnoymousUser(AnnoymousRegisterUser user);
     }
 }

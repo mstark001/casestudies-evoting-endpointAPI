@@ -13,5 +13,6 @@ namespace EndpointServer.Interfaces
         string GetOAuthCodeFromUserCode(string votingCode);
         string GetConsistuencyFromUserCode(string votingCode);
         void RegisterOAuthCodeAgainstUserCode(string oauth, string userCode);
+        void RegisterOAuthCodeAgainstSignUp(string oauth, string firstName, string lastname, string postCode);
     }
 }

@@ -28,8 +28,21 @@ namespace EndpointServer.Services
         {
             _db.Connect();
             //generate and store record of the token somewhere - token is stored against voting code
-            string oauth = "some token";
+            //these are stored against a user for verifcation durign the voting process, hecne the different oauth for registering
+            string oauth = new Guid().ToString();
             _db.RegisterOAuthCodeAgainstUserCode(oauth, votingCode);
+
+            _db.Discoonect();
+            return oauth;
+        }
+
+        public string GetSignupOAuthCode(string firstName, string lastName, string postCode)
+        {
+            //these pamaters could be guids for an annon signup, so we will have to generate
+            //a key to store them in a sign up database/session
+            _db.Connect();
+            string oauth = new Guid().ToString();
+            _db.RegisterOAuthCodeAgainstSignUp(oauth, firstName, lastName, postCode);
 
             _db.Discoonect();
             return oauth;
