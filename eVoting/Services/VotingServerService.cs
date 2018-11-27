@@ -12,14 +12,15 @@ namespace eVoting.Services
     public class VotingServerService : IVotingServerService
     {
         private string _localServerEndpoint;
-        private bool _loggedIn = false;
         private string _oAuthToken;
 
         private IEndpointServerService _coordServerService;
+        private IValueStoreService _valueStoreService;
 
-        public VotingServerService(IEndpointServerService coordServerService)
+        public VotingServerService(IEndpointServerService coordServerService, IValueStoreService valueStoreService)
         {
             _coordServerService = coordServerService;
+            _valueStoreService = valueStoreService;
         }
 
         public void Authenticate(string postcode, string votingCode, string endpoint)
@@ -28,7 +29,17 @@ namespace eVoting.Services
                 throw new NotAuthenticatedException();
 
             SetLocalServerEndpoint(endpoint);
-            SetLoggedIn(true);
+            _valueStoreService.SetLoggedIn(true);
+            _valueStoreService.SetVotingCode(votingCode);
+        }
+
+        public void Dethenticate()
+        {
+            _oAuthToken = null;
+            SetLocalServerEndpoint(null);
+
+            _valueStoreService.SetLoggedIn(false);
+            _valueStoreService.SetVotingCode(null);
         }
 
 
@@ -49,11 +60,6 @@ namespace eVoting.Services
             _localServerEndpoint = endpoint;
         }
 
-        private void SetLoggedIn(bool loggedIn)
-        {
-            _loggedIn = loggedIn;
-        }
-
         private bool SetupOuathToken(string postcode, string votingCode)
         {
             //use postcode and votingCode to get an oauth token
@@ -63,7 +69,7 @@ namespace eVoting.Services
 
         private bool VerifyRequest()
         {
-            if (!_loggedIn)
+            if (!_valueStoreService.GetLoggedIn())
                 return false;
 
             if (_localServerEndpoint == null)

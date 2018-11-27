@@ -13,7 +13,10 @@ namespace eVoting
     {
         LoginView,
         RegisterView,
-        VotingView
+        VotingView,
+        FirstPastThePostView,
+        PreferentialView,
+        SingleTransferableView
     }
 
     static class App
@@ -70,6 +73,9 @@ namespace eVoting
         {
             _viewRegister.Add(ViewType.LoginView, new LoginView(_dependencyService));
             _viewRegister.Add(ViewType.RegisterView, new RegisterView(_dependencyService));
+            _viewRegister.Add(ViewType.FirstPastThePostView, new FirstPastThePostView(_dependencyService));
+            _viewRegister.Add(ViewType.PreferentialView, new PreferentialView(_dependencyService));
+            _viewRegister.Add(ViewType.SingleTransferableView, new SingleTransferableView(_dependencyService));
         }
 
         private static void SetupAndRegisterServices()
@@ -81,7 +87,7 @@ namespace eVoting
             var votingServerService = new VotingServerService(endpointServerService);
             var loginService = new LoginService(endpointServerService, votingServerService);
             var translationServerService = new TranslationServerService();
-            var accessibleValueService = new AccessibleValueService(translationServerService);
+            var accessibleValueService = new ValueStoreService(translationServerService);
 
             ///////////// Set up the Dependency Service //////////////////
 
@@ -90,7 +96,7 @@ namespace eVoting
             _dependencyService.Register<IEndpointServerService>(endpointServerService);
             _dependencyService.Register<IVotingServerService>(votingServerService);
             _dependencyService.Register<ITranslationServerService>(translationServerService);
-            _dependencyService.Register<IAccessibleValueService>(accessibleValueService);
+            _dependencyService.Register<IValueStoreService>(accessibleValueService);
 
             //////////////////////////////////////////////////////////////
         }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using eVoting.Interfaces;
+using eVoting.Models;
 
 namespace eVoting.Services
 {
-    public class AccessibleValueService : IAccessibleValueService
+    public class ValueStoreService : IValueStoreService
     {
         private ITranslationServerService _translationServerService;
 
@@ -14,9 +15,13 @@ namespace eVoting.Services
         private double _zoomFactor = 1;
         private string _selectedLanguageCode = "en";
         private List<string> _availableLangaugeCodes = new List<string>();
+
+        private Election _selectedElection;
+        private bool _loggedIn;
+        private string _votingCode;
         ////
 
-        public AccessibleValueService(ITranslationServerService translationServerService)
+        public ValueStoreService(ITranslationServerService translationServerService)
         {
             _translationServerService = translationServerService;
         }
@@ -25,6 +30,21 @@ namespace eVoting.Services
         public bool GetAccessibility()
         {
             return _accessibility;
+        }
+
+        public string GetVotingCode()
+        {
+            return _votingCode;
+        }
+
+        public bool GetLoggedIn()
+        {
+            return _loggedIn;
+        }
+
+        public Election GetSelectedElection()
+        {
+            return _selectedElection;
         }
 
         public double GetZoomFactor()
@@ -53,6 +73,21 @@ namespace eVoting.Services
         public void SetAccessibility(bool accessibility)
         {
             _accessibility = accessibility;
+        }
+
+        public void SetVotingCode(string votingCode)
+        {
+            _votingCode = votingCode;
+        }
+
+        public void SetLoggedIn(bool value)
+        {
+            _loggedIn = value;
+        }
+
+        public void SetSelectedElection(Election election)
+        {
+            _selectedElection = election;
         }
 
         public void SetZoomFactor(double zoomFactor)

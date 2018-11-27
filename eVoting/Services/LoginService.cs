@@ -22,6 +22,12 @@ namespace eVoting.Services
             return true;
         }
 
+        public bool Logout()
+        {
+            _votingServerService.Dethenticate();
+            return true;
+        }
+
         public bool RegisterNewUser(RegisterUser user)
         {
             return _endpointServerService.RegisterNewUser(user);

@@ -8,7 +8,7 @@ namespace eVoting.Models
     public abstract class BaseView : Form
     {
         private ITranslationServerService _translationServerService;
-        private IAccessibleValueService _accessibleValueService;
+        private IValueStoreService _accessibleValueService;
 
 
 
@@ -21,7 +21,7 @@ namespace eVoting.Models
         public BaseView(IDependencyService dependencyService)
         {
             _translationServerService = dependencyService.Get<ITranslationServerService>();
-            _accessibleValueService = dependencyService.Get<IAccessibleValueService>();
+            _accessibleValueService = dependencyService.Get<IValueStoreService>();
         }
 
         public virtual void SetAccesibilityMode(bool accessibility)
