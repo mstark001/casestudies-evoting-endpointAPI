@@ -37,6 +37,23 @@ namespace eVoting.Models
             App.NavigateToView(ViewType.VotingView);
         }
 
+        public void SpoilBallot()
+        {
+            var vote = new Vote();
+            vote.SetElectionId(_election.GetElectionId());
+            vote.SetElectionType(_election.GetElectionType());
+
+            var spoilParty = new Party();
+            spoilParty.SetPartyName("SPOILT BALLOT");
+
+            vote.SetPartiesVotedFor(new List<Party>() { spoilParty } );
+            vote.SetVotingCode(_valueStoreService.GetVotingCode());
+
+            _votingServerService.SubmitVote(vote);
+
+            ReturnToVotingMenu();
+        }
+
         public void SubmitVote()
         {
             var vote = new Vote();

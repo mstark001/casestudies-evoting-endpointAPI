@@ -12,8 +12,6 @@ namespace eVoting.Models
         private string _electionName;
         private List<Party> _parties;
         private Country _country;
-        private CountingType _voteType;
-
         private ElectionType _electionType;
         
         public ElectionType GetElectionType()
@@ -25,6 +23,8 @@ namespace eVoting.Models
         {
             return _electionId;
         }
+
+       
 
  
     }

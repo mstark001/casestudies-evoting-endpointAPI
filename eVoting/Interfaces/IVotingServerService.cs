@@ -12,7 +12,6 @@ namespace eVoting.Interfaces
         void Authenticate(string postcode, string votingCode, string endpoint);
         List<Election> GetCurrentElections();
         void Dethenticate();
-
-
+        bool SubmitVote(Vote vote);
     }
 }

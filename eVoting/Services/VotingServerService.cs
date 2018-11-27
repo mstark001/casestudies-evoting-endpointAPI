@@ -42,6 +42,17 @@ namespace eVoting.Services
             _valueStoreService.SetVotingCode(null);
         }
 
+        public bool SubmitVote(Vote vote)
+        {
+            if (!VerifyRequest())
+                throw new NotAuthenticatedException();
+
+            vote.SetOAuth(_oAuthToken);
+     
+            //call to the endpoint saved and submit the vote
+            return true;
+        }
+
 
         public List<Election> GetCurrentElections()
         {

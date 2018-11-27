@@ -19,3 +19,14 @@ C:/Users/Matth/source/repos/eVoting/eVoting/obj/Debug/eVoting.pdb
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.pdb
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.LoginView.resources
 /Users/mattstark/Documents/GitHub/casestudies-evoting/eVoting/obj/Debug/eVoting.RegisterView.resources
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\obj\Debug\eVoting.csprojAssemblyReference.cache
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\obj\Debug\eVoting.RegisterView.resources
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\obj\Debug\eVoting.Properties.Resources.resources
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\obj\Debug\eVoting.LoginView.resources
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\obj\Debug\eVoting.csproj.GenerateResource.cache
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\obj\Debug\eVoting.csproj.CoreCompileInputs.cache
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\obj\Debug\eVoting.exe
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\obj\Debug\eVoting.pdb
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\bin\Debug\eVoting.exe.config
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\bin\Debug\eVoting.exe
+C:\Users\Matth\Documents\GitHub\casestudies-evoting\eVoting\bin\Debug\eVoting.pdb

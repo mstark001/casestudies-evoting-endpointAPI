@@ -84,10 +84,10 @@ namespace eVoting
 
             var geoLocationService = new GeoLocationService();
             var endpointServerService = new EndpointServerService(geoLocationService);
-            var votingServerService = new VotingServerService(endpointServerService);
-            var loginService = new LoginService(endpointServerService, votingServerService);
             var translationServerService = new TranslationServerService();
-            var accessibleValueService = new ValueStoreService(translationServerService);
+            var valueStoreService = new ValueStoreService(translationServerService);
+            var votingServerService = new VotingServerService(endpointServerService, valueStoreService);
+            var loginService = new LoginService(endpointServerService, votingServerService);
 
             ///////////// Set up the Dependency Service //////////////////
 
@@ -96,7 +96,7 @@ namespace eVoting
             _dependencyService.Register<IEndpointServerService>(endpointServerService);
             _dependencyService.Register<IVotingServerService>(votingServerService);
             _dependencyService.Register<ITranslationServerService>(translationServerService);
-            _dependencyService.Register<IValueStoreService>(accessibleValueService);
+            _dependencyService.Register<IValueStoreService>(valueStoreService);
 
             //////////////////////////////////////////////////////////////
         }
