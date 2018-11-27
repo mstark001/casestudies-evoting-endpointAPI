@@ -8,5 +8,25 @@ namespace EndpointServer.Models.RequestObjects
         private string _postCode;
         private GeoCoordinate _coord;
 
+        public string GetOAuth()
+        {
+            return _oauth;
+        }
+
+        public string GetVotingCode()
+        {
+            return _votingCode;
+        }
+
+        public string GetPostcode()
+        {
+            return _postCode;
+        }
+
+        public GeoCoordinate GetCoord()
+        {
+            return _coord;
+        }
+
     }
 }

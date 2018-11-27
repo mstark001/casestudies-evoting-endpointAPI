@@ -24,6 +24,16 @@ namespace EndpointServer.Services
             return dbOauth == oauth;
         }
 
+        public bool VerifySignupOAuthCode(string oauth, string firstName, string lastName, string postcode)
+        {
+            _db.Connect();
+            //validate it somehow
+            var dbOauth = _db.GetRegisterRequestFromOAuth(oauth);
+
+            _db.Discoonect();
+            return dbOauth == oauth;
+        }
+
         public string GetOAuthCode(string votingCode, string postcode)
         {
             _db.Connect();

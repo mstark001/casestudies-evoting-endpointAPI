@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EndpointServer.Models;
+using EndpointServer.Models.RequestObjects;
 using EndpointServer.Services;
 
 namespace EndpointServer
@@ -22,27 +23,33 @@ namespace EndpointServer
                 switch (current.GetRequestType())
                 {
                     case RequestType.GetEndpoint:
-                        resp = GetEndpoint(current);
+                        var endpontReq = JSONSeralize.DeserializeGetEndpointRequest(current.GetJson());
+                        resp = GetEndpoint(endpontReq);
                         break;
 
                     case RequestType.GetStandardOAuth:
-                        resp = GetStandardOAuth(current);
+                        var standardOauthRequest = JSONSeralize.DeserializeStandardOAuthRequest(current.GetJson());
+                        resp = GetStandardOAuth(standardOauthRequest);
                         break;
 
                     case RequestType.ValidateConsistuency:
-                        resp = ValidateConsistuency(current);
+                        var validateConsistuency = JSONSeralize.DeserializeValidateConsistuency(current.GetJson());
+                        resp = ValidateConsistuency(validateConsistuency);
                         break;
                     
                     case RequestType.GetSignupOAuth:
-                        resp = GetSignupOAuth(current);
+                        var signUpOathRequest = JSONSeralize.DeserializeSignUpOAthRequest(current.GetJson());
+                        resp = GetSignupOAuth(signUpOathRequest);
                         break;
 
                     case RequestType.RegisterNewUser:
-                        resp = RegisterNewUser(current);
+                        var registerNewuserRequest = JSONSeralize.DeserializeNewUser(current.GetJson());
+                        resp = RegisterNewUser(registerNewuserRequest);
                         break;
 
                     case RequestType.RegisterAnnoymousUser:
-                        resp = RegisterAnnoymousUser(current);
+                        var registerAnnoymousUserRequest = JSONSeralize.DeserializeAnnoymousUser(current.GetJson());
+                        resp = RegisterAnnoymousUser(registerAnnoymousUserRequest);
                         break;
 
                     default:
@@ -64,7 +71,7 @@ namespace EndpointServer
 
         #region Private Helper Functions
 
-        private static string GetEndpoint(EndpointRequest req)
+        private static string GetEndpoint(GetEndpointRequest req)
         {
             string oauth = req.GetOAuth();
             string votingCode = req.GetVotingCode();
@@ -81,10 +88,10 @@ namespace EndpointServer
         }
 
 
-        private static string GetStandardOAuth(EndpointRequest req)
+        private static string GetStandardOAuth(StandardOAuthRequest req)
         {
-            string postcode = req.GetPostCode();
-            string votingCode = req.GetVotingCode();
+            string postcode = req.GetPostcode();
+            string votingCode = req.GetVotingcode();
 
             OAuthDatabaseService oauthService = new OAuthDatabaseService();
             string oauth = oauthService.GetOAuthCode(votingCode, postcode);
@@ -92,28 +99,63 @@ namespace EndpointServer
         }
 
 
-        private static string GetSignupOAuth(EndpointRequest req)
+        private static string GetSignupOAuth(SignupOAuthRequest req)
         {
             string firstName = req.GetFirstName();
             string lastName = req.GetLastName();
-            string postCode = req.GetPostCode();
+            string postCode = req.GetPostcode();
 
             OAuthDatabaseService oauthService = new OAuthDatabaseService();
-            string oauth = oauthService.GetSignupOAuthCode(firstName, lastName, postcode);
+            string oauth = oauthService.GetSignupOAuthCode(firstName, lastName, postCode);
             return oauth;
         }
 
-        private static string RegisterNewUser(EndpointRequest req)
+        private static string RegisterNewUser(RegisterNewUserRequest req)
         {
+            string oauth = req.GetOAuth();
+            string first = req.GetFirstName();
+            string last = req.GetLastName();
+            string postcode = req.GetPostcode();
 
+            OAuthDatabaseService oauthService = new OAuthDatabaseService();
+            if (!oauthService.VerifySignupOAuthCode(oauth, first, last, postcode))
+                return "ERROR";
+
+            User user = new User();
+            user.SetAddress(req.GetAddress());
+            user.SetCountry(req.GetCountry());
+            user.SetDoB(req.GetDoB());
+            user.SetFirstName(first);
+            user.SetLastName(last);
+            user.SetMiddleName(req.GetMiddleName());
+            user.SetNationality(req.GetNationality());
+            user.SetOAuthCoode(req.GetOAuth());
+            user.SetPostCode(postcode);
+
+            var registerUserService = new RegisterUserService();
+            registerUserService.RegisterNewUser(user);
+
+            return "done";
         }
 
-        private static string RegisterAnnoymousUser(EndpointRequest req)
+        private static string RegisterAnnoymousUser(RegisterAnnoymousUserRequest req)
         {
+            string oauth = req.GetOAuth();
+            string first = req.GetGeneratedFirstName();
+            string last = req.GetGeneratedLastName();
+            string postcode = req.GetGeneratedPostcode();
 
+            OAuthDatabaseService oauthService = new OAuthDatabaseService();
+            if (!oauthService.VerifySignupOAuthCode(oauth, first, last, postcode))
+                return "ERROR";
+
+            var registerUserService = new RegisterUserService();
+            registerUserService.RegisterNewAnnoymousUser(req.GetFormData(), req.GetAdditionalDetails());
+
+            return "done";
         }
 
-        private static string ValidateConsistuency(EndpointRequest req)
+        private static string ValidateConsistuency(ValidateConsistunecyRequst req)
         {
             string oauth = req.GetOAuth();
             string votingCode = req.GetVotingCode();
@@ -123,8 +165,8 @@ namespace EndpointServer
                 return "ERROR";
 
             //Validated
-            var postcode = req.GetPostCode();
-            var coord = req.GetGeoCoordinate();
+            var postcode = req.GetPostcode();
+            var coord = req.GetCoord();
 
             ConsistuencyDatabaseService consistuencyService = new ConsistuencyDatabaseService();
             bool result = consistuencyService.ValidateCredentails(postcode, coord, votingCode);

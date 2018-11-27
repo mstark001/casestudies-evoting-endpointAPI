@@ -5,5 +5,15 @@ namespace EndpointServer.Models.RequestObjects
     {
         private string _postCode;
         private string _votingCode;
+
+        public string GetPostcode()
+        {
+            return _postCode;
+        }
+
+        public string GetVotingcode()
+        {
+            return _votingCode;
+        }
     }
 }

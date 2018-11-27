@@ -5,5 +5,15 @@ namespace EndpointServer.Models.RequestObjects
     {
         private string _oauth;
         private string _votingCode;
+
+        public string GetOAuth()
+        {
+            return _oauth;
+        }
+
+        public string GetVotingCode()
+        {
+            return _votingCode;
+        }
     }
 }

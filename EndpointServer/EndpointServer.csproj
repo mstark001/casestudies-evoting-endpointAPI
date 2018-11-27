@@ -51,6 +51,9 @@
     <Compile Include="Models\RequestObjects\RegisterAnnoymousUserRequest.cs" />
     <Compile Include="Models\RequestObjects\ValidateConsistunecyRequst.cs" />
     <Compile Include="Models\RequestObjects\GetEndpointRequest.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Services\RegisterUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />

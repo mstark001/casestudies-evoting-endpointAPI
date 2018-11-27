@@ -35,6 +35,11 @@ namespace EndpointServer.Services
             return "some endpoint";
         }
 
+        public string GetRegisterRequestFromOAuth(string ouath)
+        {
+            return "firstName" + "lastname" + "postcode";
+        }
+
         public string GetOAuthCodeFromUserCode(string votingCode)
         {
             return "some oauthCode";
@@ -45,12 +50,27 @@ namespace EndpointServer.Services
             return "some code";
         }
 
+        public string GetConsistuencyFromPostCode(string postcode)
+        {
+            return "some consistuency";
+        }
+
         public void RegisterOAuthCodeAgainstUserCode(string oauth, string userCode)
         {
             //do a thing
         }
 
         public void RegisterOAuthCodeAgainstSignUp(string oauth, string firstName, string lastname, string postCode)
+        {
+            //do a thing
+        }
+
+        public void RecordNewUser(User user)
+        {
+            //do a thing
+        }
+
+        public void RecordNewAnnoymousRequestUser(byte[] data, string additionalDetails)
         {
             //do a thing
         }

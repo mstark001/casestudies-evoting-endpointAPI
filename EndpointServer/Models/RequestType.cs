@@ -3,8 +3,12 @@ namespace EndpointServer.Models
 {
     public enum RequestType
     {
-        GetOAuth,
+        GetStandardOAuth,
+        GetSignupOAuth,
+        RegisterNewUser,
+        RegisterAnnoymousUser,
         ValidateConsistuency,
         GetEndpoint
+
     }
 }
