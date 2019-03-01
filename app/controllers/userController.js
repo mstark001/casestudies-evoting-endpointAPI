@@ -167,7 +167,7 @@ class UserController {
                       expiresIn: 10000
                     });
 
-                    var url=`http://localhost:8000/endpoint/${out[i].countryId}/${out[i].postCode}`;
+                    var url=`http://evoting-endpoint-evoting-endpoint.1d35.starter-us-east-1.openshiftapps.com/endpoint/${out[i].countryId}/${out[i].postCode}`;
                     
                     let result = await axios.get(url,
                     { headers: {"x-access-token" : `${tempToken}`} }
