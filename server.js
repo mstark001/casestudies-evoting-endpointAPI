@@ -11,6 +11,9 @@ var mongoose = require('mongoose');
 
 const port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 const ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+//const port = 8000;
+//const ip_address = "";
+
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
