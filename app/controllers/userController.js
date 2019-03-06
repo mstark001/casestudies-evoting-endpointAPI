@@ -175,6 +175,7 @@ class UserController {
 
                     // create a token
                     var token = jwt.sign({
+                      _id: out[i]._id,
                       firstName: out[i].firstName,
                       lastName: out[i].lastName,
                       isAuditor : out[i].isAuditor,
