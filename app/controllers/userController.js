@@ -150,10 +150,10 @@ class UserController {
   
         await User.find({postCode: postCode}, async (err, out) => {
           if (err) {
-            res.send('FAILURE');
+            res.send('FAILURE '+err);
           } else {
             if (out == null)
-              res.send('FAILURE');
+              res.send('FAILURE Could not find anyone at that postcode');
             else {
               
               for (let i = 0; i < out.length; i++)
@@ -193,7 +193,7 @@ class UserController {
                   }
               }
 
-              res.send('FAILURE');
+              res.send('FAILURE No Matching users at that postcode');
             }
           }
         });
