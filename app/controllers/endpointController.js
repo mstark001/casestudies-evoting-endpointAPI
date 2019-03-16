@@ -17,7 +17,7 @@ class EndpointController {
 
         Endpoint.create(endpoint.toJSON(), (err, out) => {
             if (err) { 
-                res.send({ 'ERROR': 'An error has occurred '+err }); 
+                res.status(500).send({ 'ERROR': 'An error has occurred '+err }); 
             } else {
                 res.send(endpoint);
             }
@@ -26,7 +26,7 @@ class EndpointController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
@@ -38,7 +38,7 @@ class EndpointController {
 
         Endpoint.find({}, (err, out) => {
             if (err) {
-                res.send({'ERROR':'An error has occurred '+err});
+                res.status(500).send({'ERROR':'An error has occurred '+err});
             } else {
                 for (let i = 0; i < out.length; i++)
                 {
@@ -52,7 +52,7 @@ class EndpointController {
                 }
 
                 //We didn't find it
-                res.send({'ERROR':'An error has occurred and the required endpoint could not be found'});
+                res.status(500).send({'ERROR':'An error has occurred and the required endpoint could not be found'});
 
             }
         });
@@ -60,7 +60,7 @@ class EndpointController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
@@ -69,7 +69,7 @@ class EndpointController {
       {
         Endpoint.find({}, (err, out) => {
             if (err) {
-              res.send({'ERROR':'An error has occurred '+err});
+              res.status(500).send({'ERROR':'An error has occurred '+err});
             } else {
               res.send(out);
             }
@@ -78,7 +78,7 @@ class EndpointController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
@@ -99,7 +99,7 @@ class EndpointController {
       
         Endpoint.updateOne(idObject, endpoint.toJSON(), (err, out) => {
           if (err) {
-              res.send({'ERROR':'An error has occurred '+err});
+              res.status(500).send({'ERROR':'An error has occurred '+err});
           } else {
               res.send(endpoint);
           } 
@@ -108,7 +108,7 @@ class EndpointController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
@@ -128,7 +128,7 @@ class EndpointController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
