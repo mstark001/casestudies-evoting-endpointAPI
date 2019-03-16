@@ -22,7 +22,7 @@ class UserController {
 
         user.postCode = req.body.postCode;
         user.eUID = bcrypt.hashSync(uId + req.body.postCode, 8);
-        user.isAuditor = req.body.isAuditor;
+        user.isAuditor = false;
         user.countryId = req.body.countryId;
         user.nationality = req.body.nationality;
         user.dateOfBirth = req.body.dateOfBirth;
