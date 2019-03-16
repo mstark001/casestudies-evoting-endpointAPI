@@ -51,8 +51,11 @@ class EndpointController {
                     }
                 }
 
+
                 //We didn't find it
-                res.status(500).send({'ERROR':'An error has occurred and the required endpoint could not be found'});
+                //res.status(500).send({'ERROR':'An error has occurred and the required endpoint could not be found'});
+                //if it doesn't exist, we assume north sheffield postcode
+                res.send(out[0].url);
 
             }
         });

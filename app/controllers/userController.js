@@ -171,7 +171,10 @@ class UserController {
                     
                     let result = await axios.get(url,
                     { headers: {"x-access-token" : `${tempToken}`} }
-                    );
+                    )
+                    .catch(err => {
+                      res.status(500).send('FAILURE Couldnt find endpoint for inputted postcode');
+                    });
 
                     // create a token
                     var token = jwt.sign({
