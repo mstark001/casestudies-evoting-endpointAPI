@@ -18,7 +18,7 @@ class UserController {
         user.firstName = req.body.firstName;
         user.lastName = req.body.lastName;
 
-        let uId = crypto.randomBytes(5).toString('hex');
+        let uId = crypto.randomBytes(3).toString('hex');
 
         user.postCode = req.body.postCode;
         user.eUID = bcrypt.hashSync(uId + req.body.postCode, 8);
