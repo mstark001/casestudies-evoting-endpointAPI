@@ -204,7 +204,7 @@ class UserController {
       catch (err)
       {
         console.log(err);
-        res.status(500).send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred '+err});
       }
     }
 
