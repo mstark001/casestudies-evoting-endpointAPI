@@ -18,11 +18,11 @@ class UserController {
         user.firstName = req.body.firstName;
         user.lastName = req.body.lastName;
 
-        let uId = crypto.randomBytes(20).toString('hex');
+        let uId = crypto.randomBytes(3).toString('hex');
 
         user.postCode = req.body.postCode;
         user.eUID = bcrypt.hashSync(uId + req.body.postCode, 8);
-        user.isAuditor = req.body.isAuditor;
+        user.isAuditor = false;
         user.countryId = req.body.countryId;
         user.nationality = req.body.nationality;
         user.dateOfBirth = req.body.dateOfBirth;
@@ -30,7 +30,7 @@ class UserController {
 
         User.create(user.toJSON(), (err, out) => {
             if (err) { 
-                res.send({ 'ERROR': 'An error has occurred '+err }); 
+                res.status(500).send({ 'ERROR': 'An error has occurred '+err }); 
             } else {
                 res.send(uId);
             }
@@ -39,7 +39,7 @@ class UserController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
@@ -50,7 +50,7 @@ class UserController {
         const idObject = { '_id': new ObjectID(id) };
         User.findOne(idObject, (err, out) => {
             if (err) {
-                res.send({'ERROR':'An error has occurred '+err});
+                res.status(500).send({'ERROR':'An error has occurred '+err});
             } else {
                 res.send(out);
             }
@@ -59,7 +59,7 @@ class UserController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
@@ -68,7 +68,7 @@ class UserController {
       {
         User.find({}, (err, out) => {
             if (err) {
-              res.send({'ERROR':'An error has occurred '+err});
+              res.status(500).send({'ERROR':'An error has occurred '+err});
             } else {
               res.send(out);
             }
@@ -77,7 +77,7 @@ class UserController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
@@ -107,7 +107,7 @@ class UserController {
       
         User.updateOne(idObject, user.toJSON(), (err, out) => {
           if (err) {
-              res.send({'ERROR':'An error has occurred '+err});
+              res.status(500).send({'ERROR':'An error has occurred '+err});
           } else {
               res.send(uId);
           } 
@@ -116,7 +116,7 @@ class UserController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
@@ -127,7 +127,7 @@ class UserController {
         const idObject = { '_id': new ObjectID(id) };
         User.deleteOne(idObject, (err, out) => {
           if (err) {
-            res.send({'ERROR':'An error has occurred '+err});
+            res.status(500).send({'ERROR':'An error has occurred '+err});
           } else {
             res.send(out + ' deleted');
           } 
@@ -136,7 +136,7 @@ class UserController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
@@ -150,10 +150,10 @@ class UserController {
   
         await User.find({postCode: postCode}, async (err, out) => {
           if (err) {
-            res.send('FAILURE '+err);
+            res.status(500).send('FAILURE '+err);
           } else {
             if (out == null)
-              res.send('FAILURE Could not find anyone at that postcode');
+              res.status(500).send('FAILURE Could not find anyone at that postcode');
             else {
               
               for (let i = 0; i < out.length; i++)
@@ -171,7 +171,10 @@ class UserController {
                     
                     let result = await axios.get(url,
                     { headers: {"x-access-token" : `${tempToken}`} }
-                    );
+                    )
+                    .catch(err => {
+                      res.status(500).send('FAILURE Couldnt find endpoint for inputted postcode');
+                    });
 
                     // create a token
                     var token = jwt.sign({
@@ -193,7 +196,7 @@ class UserController {
                   }
               }
 
-              res.send('FAILURE No Matching users at that postcode');
+              res.status(500).send('FAILURE No Matching users at that postcode');
             }
           }
         });
@@ -201,7 +204,7 @@ class UserController {
       catch (err)
       {
         console.log(err);
-        res.send({"ERROR": 'An error has occurred'});
+        res.status(500).send({"ERROR": 'An error has occurred'});
       }
     }
 
