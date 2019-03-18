@@ -9,12 +9,17 @@ describe("Testing valid User Update Endpoints", function() {
   describe("User has been Updated", function() {
     it("User update sucessful", function() {
       var data = {
-        postCode: "s14dg",
-        userCode: "b3b34acfbd88b79e721ba26c4fe6646c799f91fd"
+        postCode: "s25dl",
+        firstName: "Shane",
+        lastName: "Tandy",
+        countryId: "UK",
+        nationality: "British",
+        dateOfBirth: "1997-01-08",
+        fullAddress: "28, The Pinnacles"
       };
 
       axios
-        .put(BASEURL + "/users/5c79a6b19fa4f02121a74fd1", data)
+        .put(BASEURL + "/users/5c8fb9de10e4dc0019fc760a", data)
         .then(res => {
           expect(res.status).to.equal(200);
         })
@@ -32,11 +37,17 @@ describe("Testing invalid user Update Endpoints", function() {
     it("User has not been updated because data is invalid", function() {
       var data = {
         postCode: "invalidpostcode",
-        userCode: "invalidusercode"
+        userCode: "invalidusercode",
+        firstName: "000",
+        lastName: "000",
+        countryId: "000",
+        nationality: "000",
+        dateOfBirth: "000",
+        fullAddress: "000"
       };
 
       axios
-        .put(BASEURL + "/users/5c79a6b19fa4f02121a74fd1", data)
+        .put(BASEURL + "/users/5c8fb9de10e4dc0019fc760a", data)
         .catch(res => {
           expect(res.status).to.equal(500);
         });

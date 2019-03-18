@@ -9,12 +9,17 @@ describe("Testing valid User Delete Endpoints", function() {
   describe("User has been deleted", function() {
     it("User deletion sucessful", function() {
       var data = {
-        postCode: "s14dg",
-        userCode: "b3b34acfbd88b79e721ba26c4fe6646c799f91fd"
+        postCode: "s25dl",
+        firstName: "Shane",
+        lastName: "Tandy",
+        countryId: "UK",
+        nationality: "British",
+        dateOfBirth: "1997-01-08",
+        fullAddress: "28, The Pinnacles"
       };
 
       axios
-        .delete(BASEURL + "/users/5c79a6b19fa4f02121a74fd1", data)
+        .delete(BASEURL + "/users/5c8fb9de10e4dc0019fc760a", data)
         .then(res => {
           expect(res.status).to.equal(200);
         })
@@ -36,7 +41,7 @@ describe("Testing invalid user Delete Endpoints", function() {
       };
 
       axios
-        .delete(BASEURL + "/users/5c79a6b19fa4f02121a74fd1", data)
+        .delete(BASEURL + "/users/5c8fb9de10e4dc0019fc760a", data)
         .catch(res => {
           expect(res.status).to.equal(500);
         });
