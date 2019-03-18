@@ -187,7 +187,8 @@ class UserController {
                       nationality : out[i].nationality,
                       dateOfBirth : out[i].dateOfBirth,
                       fullAddress : out[i].fullAddress,
-                      expectedEndpoint : result.data
+                      expectedEndpoint : result.data.url,
+                      constiuenecyId : result.data.name
                     }, config.secret, {
                       expiresIn: 1000000000000000086400 // expires in a very long time (Need so tests still work)
                     });
