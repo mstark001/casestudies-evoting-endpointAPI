@@ -14,6 +14,7 @@ class EndpointController {
         endpoint.url = req.body.url;
         endpoint.countryCode = req.body.countryCode;
         endpoint.postCodes = req.body.postCodes;
+        endpoint.name = req.body.name;
 
         Endpoint.create(endpoint.toJSON(), (err, out) => {
             if (err) { 
@@ -46,7 +47,7 @@ class EndpointController {
                     (out[i].countryCode === countryId))
                     {
                         //We found it!
-                        res.send(out[i].url);
+                        res.send(out[i]);
                         return;
                     }
                 }
@@ -55,7 +56,7 @@ class EndpointController {
                 //We didn't find it
                 //res.status(500).send({'ERROR':'An error has occurred and the required endpoint could not be found'});
                 //if it doesn't exist, we assume north sheffield postcode
-                res.send(out[0].url);
+                res.send(out[0]);
 
             }
         });
@@ -98,6 +99,7 @@ class EndpointController {
         endpoint.url = req.body.url;
         endpoint.countryCode = req.body.countryCode;
         endpoint.postCodes = req.body.postCodes;
+        endpoint.name = req.body.name;
 
       
         Endpoint.updateOne(idObject, endpoint.toJSON(), (err, out) => {

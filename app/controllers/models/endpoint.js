@@ -8,6 +8,9 @@ var endpointSchema = new Schema({
       required: true,
       type: String
   },
+  name: {
+      type: String,
+  },
   countryCode: {
       required: true,
       type: String
