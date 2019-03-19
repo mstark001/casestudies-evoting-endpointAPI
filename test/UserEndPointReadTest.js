@@ -18,7 +18,7 @@ describe("Testing User Read Endpoints", function() {
       }
     
       await axios
-        .get(BASEURL + "/users/5c79a6b19fa4f02121a74fd1", headers)
+        .get(BASEURL + "/users/5c916e0bb0b8f60019dae3b5", headers)
         .then(res => {
           expect(res.status).to.equal(200);
         })
@@ -35,7 +35,7 @@ describe("Testing Forbidden User Read Endpoints", function() {
     it("User is forbidden", async function() {
 
       await axios
-        .get(BASEURL + "/users/5c79a6b19fa4f02121a74fd1")
+        .get(BASEURL + "/users/5c916e0bb0b8f60019dae3b5")
         .then(res => {
           chai.assert.fail("Unexpected response");
         })
@@ -60,7 +60,9 @@ describe("Testing invalid Login Endpoints", function() {
 
       await axios
         .get(BASEURL + "/users/someinvalidusercode", headers)
-
+        .then(res => {
+          chai.assert.fail("Unexpected success");
+        })
         .catch(res => {
           expect(res.response.status).to.equal(500);
         });
