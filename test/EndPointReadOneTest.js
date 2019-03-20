@@ -2,12 +2,11 @@ var axios = require("axios");
 var chai = require("chai").use(require("chai-as-promised"));
 var expect = chai.expect;
 
-
 var BASEURL =
   "http://evoting-endpoint-evoting-endpoint.1d35.starter-us-east-1.openshiftapps.com";
 
 //Pass
-describe("Testing all the endpoints can be read", function() {
+describe("Testing one endpoint can be read", function() {
   describe("endpoint has been found", function() {
     it("Is an existing endpoint", async function() {
 
@@ -19,7 +18,7 @@ describe("Testing all the endpoints can be read", function() {
       }
 
       await axios
-        .get(BASEURL + "/endpoint", headers)
+        .get(BASEURL + "/endpoint/UK/s14dg", headers)
         .then(res => {
           expect(res.status).to.equal(200);
         })
@@ -30,13 +29,14 @@ describe("Testing all the endpoints can be read", function() {
   });
 });
 
-//Not authorised
-describe("No auth endpoints read", function() {
-  describe("endpoint not found because not auth", function() {
-    it("user not authorised", async function() {
+//Not authenticated
+
+describe("Testing auth one endpoint can be read", function() {
+  describe("endpoint has been denied", function() {
+    it("blocked due to auth", async function() {
 
       await axios
-        .get(BASEURL + "/endpoint")
+        .get(BASEURL + "/endpoint/UK/s14dg")
         .then(res => {
           chai.assert.fail("Unexpected response");
         })
@@ -46,5 +46,4 @@ describe("No auth endpoints read", function() {
     });
   });
 });
-
 

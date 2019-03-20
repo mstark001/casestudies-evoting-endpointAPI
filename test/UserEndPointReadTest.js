@@ -6,7 +6,7 @@ var BASEURL =
   "http://evoting-endpoint-evoting-endpoint.1d35.starter-us-east-1.openshiftapps.com";
 
 //Pass
-describe("Testing User Read Endpoints", function() {
+describe("Testing User Read", function() {
   describe("User has been Found", function() {
     it("Is an existing user", async function() {
 
@@ -30,7 +30,7 @@ describe("Testing User Read Endpoints", function() {
 });
 
 //Forbidden due to no access token provided
-describe("Testing Forbidden User Read Endpoints", function() {
+describe("Testing Forbidden User Read ", function() {
   describe("User forbidden due to no access key", function() {
     it("User is forbidden", async function() {
 
@@ -47,7 +47,7 @@ describe("Testing Forbidden User Read Endpoints", function() {
 });
 
 //Fail
-describe("Testing invalid Login Endpoints", function() {
+describe("Testing invalid user read", function() {
   describe("User not found", function() {
     it("Is a not an existing user", async function() {
 
