@@ -6,6 +6,8 @@ module.exports = function(routes) {
 
   let userController = new UserController();
 
+//Commuciates with userController for seperation of concerns
+
   //Create
   routes.post('/users', userController.createUser);
   //Read

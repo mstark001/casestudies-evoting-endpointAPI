@@ -3,6 +3,8 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
 
+    // This schema is enforced by mongo to ensure our data is consitent
+
   firstName: {
       required: true,
       type: String
@@ -42,8 +44,6 @@ var userSchema = new Schema({
   submittedVotes: {
     type: [String]
 }
-
-
 
 
 });

@@ -14,13 +14,15 @@ const ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 //const port = 8000;
 //const ip_address = "";
 
-
+//These secure the API by only allowing pre set tokens to actually be passed to it, lest it block it
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, x-access-token, x-access-token2, Content-Type, Accept");
     next();
   });
+
+  //Allow the api to retrieve json responses
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -31,6 +33,8 @@ mongoose.connect(db.url, {
     // sets the delay between every retry (milliseconds)
     reconnectInterval: 5000         
 });
+
+//Start db coonection
 var connection = mongoose.connection;
 connection.on('error', console.error.bind(console, 'connection error:'));
 connection.once('open', function() {

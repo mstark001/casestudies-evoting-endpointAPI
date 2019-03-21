@@ -6,6 +6,8 @@ module.exports = function(routes) {
 
   let endpointController = new EndpointController();
 
+//Communciates with endpointController for seperation of concerns
+
   //Create
   routes.post('/endpoint', VerifyAuditToken, endpointController.createEndpoint);
   //Read

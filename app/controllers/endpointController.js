@@ -7,6 +7,7 @@ var db = null;
 
 class EndpointController {
 
+  // Create Endpoint, takes varaibles in the request
     createEndpoint(req, res){
       try
       {
@@ -31,6 +32,7 @@ class EndpointController {
       }
     }
 
+    //Gets the endpoint from the matching postcode and country
     getEndpoint(req, res){
       try
       {
@@ -68,6 +70,7 @@ class EndpointController {
       }
     }
 
+    //get all endpoints
     getEndpoints(req, res){
       try
       {
@@ -86,6 +89,7 @@ class EndpointController {
       }
     }
 
+    //updates the details of one endpoint
     updateEndpoint(req, res){
       try
       {
@@ -117,6 +121,8 @@ class EndpointController {
       }
     }
 
+
+//deletes an endpoint
     deleteEndpoint(req, res){
       try
       {

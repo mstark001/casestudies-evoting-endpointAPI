@@ -1,7 +1,7 @@
 var jwt = require('jsonwebtoken');
 var config = require('../../config/enviromentVariables');
 
-
+//This bit of middleware will only accept requests from logged in users
 function verifyToken(req, res, next) {
   var token = req.headers['x-access-token'];
   if (!token)

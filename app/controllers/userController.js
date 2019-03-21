@@ -11,6 +11,7 @@ var axios = require("axios");
 
 class UserController {
 
+  //Creates a user from the passed in data
     createUser(req, res){
       try
       {
@@ -18,9 +19,11 @@ class UserController {
         user.firstName = req.body.firstName;
         user.lastName = req.body.lastName;
 
+        //Genereates a unique 6 charater string
         let uId = crypto.randomBytes(3).toString('hex');
 
         user.postCode = req.body.postCode;
+        //Creates a unique encrpyted id from the genereated code and the postcode
         user.eUID = bcrypt.hashSync(uId + req.body.postCode, 8);
         user.isAuditor = false;
         user.countryId = req.body.countryId;
@@ -43,6 +46,7 @@ class UserController {
       }
     }
 
+    //Gets a given user from an id
     getUser(req, res){
       try
       {
@@ -63,6 +67,7 @@ class UserController {
       }
     }
 
+    //Gets allthe users
     getUsers(req, res){
       try
       {
@@ -81,6 +86,7 @@ class UserController {
       }
     }
 
+    //updates a given users data
     updateUser(req, res){
       try
       {
@@ -120,6 +126,7 @@ class UserController {
       }
     }
 
+    //deletes a given user
     deleteUser(req, res){
       try
       {
@@ -140,6 +147,7 @@ class UserController {
       }
     }
 
+    //perform a login with a user code and post code
     async login(req, res){
       try
       {
@@ -167,6 +175,7 @@ class UserController {
                       expiresIn: 10000
                     });
 
+                    //<Make request with a fake token to get the right endpoint for th given user
                     var url=`http://evoting-endpoint-evoting-endpoint.1d35.starter-us-east-1.openshiftapps.com/endpoint/${out[i].countryId}/${out[i].postCode}`;
                     
                     let result = await axios.get(url,

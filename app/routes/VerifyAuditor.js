@@ -1,7 +1,7 @@
 var jwt = require('jsonwebtoken');
 var config = require('../../config/enviromentVariables');
 
-
+//This algorithim is middleware to only accept requests from auditor users
 function verifyAudit(req, res, next) {
   var token = req.headers['x-access-token'];
   if (!token)

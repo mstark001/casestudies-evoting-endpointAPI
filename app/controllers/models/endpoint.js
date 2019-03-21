@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var endpointSchema = new Schema({
 
+    // This schema is enforced by mongo to ensure our data is consitent
   url: {
       unique: true,
       required: true,
@@ -21,6 +22,7 @@ var endpointSchema = new Schema({
   }
 
 });
+
 
 var Endpoint = mongoose.model('Endpoint', endpointSchema);
 
